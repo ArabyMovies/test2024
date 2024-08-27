@@ -11,7 +11,8 @@ document.getElementById("userForm").addEventListener("submit", function(event) {
 
     fetch("https://wkjimvbsxr.wuaze.com/ajout.php", {
         method: "POST",
-        body: formData
+        body: formData,
+        mode: 'no-cors'
     })
     .then(response => response.json())
     .then(data => {
