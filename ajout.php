@@ -2,10 +2,10 @@
 header('Content-Type: application/json');
 
 // Connexion à la base de données
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "votre_base_de_donnees"; // Remplacez par le nom de votre base de données
+$servername = "sql203.infinityfree.com";
+$username = "if0_37189728";
+$password = "aJlKVSIZMG";
+$dbname = "if0_37189728_TEST"; // Remplacez par le nom de votre base de données
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
