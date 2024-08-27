@@ -9,7 +9,7 @@ document.getElementById("userForm").addEventListener("submit", function(event) {
     formData.append("nom", nom);
     formData.append("prenom", prenom);
 
-    fetch("http://test.com/ajout.php", {
+    fetch("https://arabymovies.github.io/ajout.php", {
         method: "POST",
         body: formData
     })
