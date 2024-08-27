@@ -9,7 +9,7 @@ document.getElementById("userForm").addEventListener("submit", function(event) {
     formData.append("nom", nom);
     formData.append("prenom", prenom);
 
-    fetch("http://wkjimvbsxr.wuaze.com/ajout.php", {
+    fetch("https://wkjimvbsxr.wuaze.com/ajout.php", {
         method: "POST",
         body: formData
     })
