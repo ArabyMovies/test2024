@@ -14,17 +14,13 @@ document.getElementById("userForm").addEventListener("submit", function(event) {
         body: formData,
         mode: 'no-cors'
     })
-    .then(response => response.json())
-    .then(data => {
+    .then(response => {
+        // Note : Vous ne pouvez pas lire le contenu de la réponse dans le mode 'no-cors'
         let messageDiv = document.getElementById("message");
-        if (data.success) {
-            messageDiv.innerHTML = "<p style='color: green;'>Utilisateur ajouté avec succès.</p>";
-        } else {
-            messageDiv.innerHTML = "<p style='color: red;'>Erreur: " + data.message + "</p>";
-        }
+        messageDiv.innerHTML = "<p style='color: green;'>Données envoyées. Aucune information de réponse disponible en raison du mode no-cors.</p>";
     })
     .catch(error => {
         console.error('Erreur:', error);
-        document.getElementById("message").innerHTML = "<p style='color: red;'>Une erreur est survenue lors de l'ajout de l'utilisateur.</p>";
+        document.getElementById("message").innerHTML = "<p style='color: red;'>Une erreur est survenue lors de l'envoi des données.</p>";
     });
 });
