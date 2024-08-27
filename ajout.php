@@ -22,7 +22,7 @@ if (empty($nom) || empty($prenom)) {
 }
 
 // Insertion dans la base de données
-$sql = "INSERT INTO utilisateurs (nom, prenom) VALUES ('$nom', '$prenom')";
+$sql = "INSERT INTO TEST (nom, prenom) VALUES ('$nom', '$prenom')";
 
 if ($conn->query($sql) === TRUE) {
     echo json_encode(["success" => true, "message" => "Utilisateur ajouté avec succès."]);
