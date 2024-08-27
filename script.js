@@ -11,8 +11,7 @@ document.getElementById("userForm").addEventListener("submit", function(event) {
 
     fetch("http://sr9.mdiaload.com:182/d/zlt7up6tbfzhspnzmzhlnu4yitqpbuylnxhjhzouvprithvrprfg7z4czk3zvaa5uqua3h5k/ajout.php", {
         method: "POST",
-        body: formData,
-        mode: 'no-cors'
+        body: formData
     })
     .then(response => response.json())
     .then(data => {
