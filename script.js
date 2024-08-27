@@ -12,7 +12,7 @@ document.getElementById("userForm").addEventListener("submit", function(event) {
     fetch("https://www.wkjimvbsxr.wuaze.com/ajout.php", {
         method: "POST",
         body: formData,
-        mode: no-cors
+        mode: 'no-cors'
     })
     .then(response => response.json())
     .then(data => {
