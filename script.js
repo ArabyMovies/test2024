@@ -1,25 +1,23 @@
-document.getElementById("userForm").addEventListener("submit", function(event) {
-    event.preventDefault(); // Empêche le rechargement de la page
+const form = document.getElementById('myForm');
 
-    let nom = document.getElementById("nom").value;
-    let prenom = document.getElementById("prenom").value;
+form.addEventListener('submit', (event) => {
+    event.preventDefault();
 
-    // Création de l'objet FormData pour envoyer les données
-    let formData = new FormData();
-    formData.append("nom", nom);
-    formData.append("prenom", prenom);
+    const nom = document.getElementById('nom').value;
+    const prenom = document.getElementById('prenom').value;
 
-    fetch("https://www.wkjimvbsxr.wuaze.com/ajout.php", {
-        method: "POST",
-        body: formData
+    fetch('https://www.wkjimvbsxr.wuaze.com/ajout.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: `nom=${nom}&prenom=${prenom}`
     })
-    .then(response => {
-        // Note : Vous ne pouvez pas lire le contenu de la réponse dans le mode 'no-cors'
-        let messageDiv = document.getElementById("message");
-        messageDiv.innerHTML = "<p style='color: green;'>Données envoyées. Aucune information de réponse disponible en raison du mode no-cors.</p>";
+    .then(response => response.text())
+    .then(data => {
+        console.log(data);
     })
     .catch(error => {
         console.error('Erreur:', error);
-        document.getElementById("message").innerHTML = "<p style='color: red;'>Une erreur est survenue lors de l'envoi des données.</p>";
     });
 });
