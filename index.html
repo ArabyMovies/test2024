@@ -1,24 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulaire d'ajout</title>
+    
 </head>
 <body>
-    <h2>Ajouter un utilisateur</h2>
-    <form id="userForm">
+    <form id="myForm">
         <label for="nom">Nom:</label>
-        <input type="text" id="nom" name="nom" required><br><br>
-
+        <input type="text" id="nom" name="nom"><br><br>
         <label for="prenom">Prénom:</label>
-        <input type="text" id="prenom" name="prenom" required><br><br>
-
-        <button type="submit">Ajouter</button>
+        <input type="text" id="prenom" name="prenom"><br><br>
+        <input type="submit" value="Envoyer">
     </form>
-
-    <div id="message"></div>
-
     <script src="script.js"></script>
 </body>
 </html>
