@@ -1,17 +1,49 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Formulaire d'ajout</title>
-    
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajouter des données</title>
 </head>
 <body>
-    <form id="myForm">
-        <label for="nom">Nom:</label>
-        <input type="text" id="nom" name="nom"><br><br>
-        <label for="prenom">Prénom:</label>
-        <input type="text" id="prenom" name="prenom"><br><br>
-        <input type="submit" value="Envoyer">
+    <h1>Formulaire d'ajout</h1>
+    <form id="addForm">
+        <input type="text" id="nom" placeholder="Nom" required>
+        <input type="text" id="prenom" placeholder="Prénom" required>
+        <button type="submit">Ajouter</button>
     </form>
-    <script src="script.js"></script>
+
+    <div id="response"></div>
+
+    <script>
+        document.getElementById('addForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const nom = document.getElementById('nom').value;
+            const prenom = document.getElementById('prenom').value;
+
+            // Envoyer la requête avec Fetch API
+            fetch('https://www.wkjimvbsxr.wuaze.com/ajout.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ nom: nom, prenom: prenom })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    document.getElementById('response').innerHTML = data.success;
+                } else {
+                    document.getElementById('response').innerHTML = data.error;
+                }
+            })
+            .catch(error => {
+                console.error('Erreur:', error);
+                document.getElementById('response').innerHTML = 'Erreur lors de l\'envoi des données';
+            });
+        });
+    </script>
 </body>
 </html>
