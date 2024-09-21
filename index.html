@@ -5,14 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Redirection</title>
     <script>
-        const urls = ["example.com", "google.com"]; 
-        function redirectToRandomUrl() {
-            const randomIndex = Math.floor(Math.random() * urls.length);
-            const randomUrl = urls[randomIndex];
-            const currentUrl = window.location.href;
-            const newUrl = currentUrl.replace(window.location.hostname, randomUrl);
-            window.location.href = newUrl;
+        const encodedUrls = [
+            "aHR0cHM6Ly9leGFtcGxlLmNvbQ==", 
+            "aHR0cHM6Ly9nb29nbGUuY29t"      
+        ]; 
+
+        function decodeBase64(encoded) {
+            return atob(encoded);
         }
+
+        function redirectToRandomUrl() {
+            const randomIndex = Math.floor(Math.random() * encodedUrls.length);
+            const randomUrl = decodeBase64(encodedUrls[randomIndex]);
+            window.location.href = randomUrl;
+        }
+
         window.onload = redirectToRandomUrl;
     </script>
 </head>
