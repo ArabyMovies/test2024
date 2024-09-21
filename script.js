@@ -1,4 +1,12 @@
+const express = require('express');
 const mysql = require('mysql');
+const cors = require('cors');
+const app = express();
+const port = 3000; // Choisis un port de ton choix
+
+// Middleware
+app.use(cors());
+app.use(express.json());
 
 // Configurer la connexion à la base de données
 const connection = mysql.createConnection({
@@ -17,16 +25,15 @@ connection.connect((err) => {
     console.log('Connecté en tant que id ' + connection.threadId);
 });
 
-// Exemple de requête (récupérer des données de la table TEST)
-connection.query('SELECT * FROM TEST', (error, results) => {
-    if (error) throw error;
-    console.log(results);
+// Route pour récupérer les URLs
+app.get('/urls', (req, res) => {
+    connection.query('SELECT * FROM TEST', (error, results) => {
+        if (error) return res.status(500).send(error);
+        res.json(results);
+    });
 });
 
-// Fermer la connexion
-connection.end((err) => {
-    if (err) {
-        return console.log('Erreur lors de la fermeture de la connexion : ' + err.message);
-    }
-    console.log('Connexion fermée.');
+// Lancer le serveur
+app.listen(port, () => {
+    console.log(`Serveur en écoute sur http://localhost:${port}`);
 });
