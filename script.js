@@ -1,35 +1,32 @@
-const form = document.getElementById('myForm');
+const mysql = require('mysql');
 
-form.addEventListener('submit', (event) => {
-    event.preventDefault();
+// Configurer la connexion à la base de données
+const connection = mysql.createConnection({
+    host: 'sql203.infinityfree.com',
+    user: 'if0_37189728',
+    password: 'aJlKVSIZMG',
+    database: 'if0_37189728_TEST'
+});
 
-    // Récupération des valeurs des champs du formulaire
-    const nom = document.getElementById('nom').value;
-    const prenom = document.getElementById('prenom').value;
+// Établir la connexion
+connection.connect((err) => {
+    if (err) {
+        console.error('Erreur de connexion: ' + err.stack);
+        return;
+    }
+    console.log('Connecté en tant que id ' + connection.threadId);
+});
 
-    // Envoi de la requête POST à l'API
-    fetch('https://wkjimvbsxr.wuaze.com/ajout.php', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded' // Assurez-vous que le serveur accepte ce Content-Type
-        },
-        body: `nom=${encodeURIComponent(nom)}&prenom=${encodeURIComponent(prenom)}` // Encodage pour éviter les problèmes de caractères spéciaux
-    })
-    .then(response => {
-        // Vérifier si la réponse est JSON
-        if (!response.ok) {
-            throw new Error(`Erreur HTTP : ${response.status}`);
-        }
-        return response.json(); // Traiter la réponse comme JSON
-    })
-    .then(data => {
-        // Afficher la réponse du serveur
-        console.log(data);
-        alert(data.message || 'Opération réussie');
-    })
-    .catch(error => {
-        // Afficher les erreurs éventuelles
-        console.error('Erreur:', error);
-        alert('Une erreur est survenue lors de la requête.');
-    });
+// Exemple de requête (récupérer des données de la table TEST)
+connection.query('SELECT * FROM TEST', (error, results) => {
+    if (error) throw error;
+    console.log(results);
+});
+
+// Fermer la connexion
+connection.end((err) => {
+    if (err) {
+        return console.log('Erreur lors de la fermeture de la connexion : ' + err.message);
+    }
+    console.log('Connexion fermée.');
 });
