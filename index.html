@@ -1,17 +1,29 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Redirection</title>
     <script>
-        const urls = ["example.com", "google.com"];
+        // Liste d'URLs
+        const urls = ["example.com", "google.com"]; 
         
-        const currentUrl = window.location.href;
+        // Fonction pour rediriger vers une URL aléatoire
+        function redirectToRandomUrl() {
+            // Choisir une URL aléatoire dans le tableau
+            const randomIndex = Math.floor(Math.random() * urls.length);
+            const randomUrl = urls[randomIndex];
 
-        // Remplacer le domaine site1.com par site2.com
-        const newUrl = currentUrl.replace('arabymovies.github.io', 'site2.com');
+            // Remplacer le domaine actuel par l'URL choisie
+            const currentUrl = window.location.href;
+            const newUrl = currentUrl.replace(window.location.hostname, randomUrl);
 
-        // Rediriger vers la nouvelle URL
-        window.location.href = newUrl;
+            // Rediriger vers la nouvelle URL
+            window.location.href = newUrl;
+        }
+
+        // Appeler la fonction de redirection au chargement de la page
+        window.onload = redirectToRandomUrl;
     </script>
 </head>
 <body>
