@@ -10,7 +10,7 @@
     <script>
         async function redirectToRandomUrl() {
             try {
-                const response = await fetch('https://wkjimvbsxr.wuaze.com/data.json'); // URL du fichier JSON
+                const response = await fetch('https://cors-anywhere.herokuapp.com/https://wkjimvbsxr.wuaze.com/data.json');
                 if (!response.ok) throw new Error('Erreur de chargement');
 
                 const data = await response.json();
