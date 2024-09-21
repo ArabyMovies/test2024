@@ -2,7 +2,7 @@ const express = require('express');
 const mysql = require('mysql');
 const cors = require('cors');
 const app = express();
-const port = 3000; // Choisis un port de ton choix
+const port = 3000; // Choisissez un port de votre choix
 
 // Middleware
 app.use(cors());
@@ -37,3 +37,25 @@ app.get('/urls', (req, res) => {
 app.listen(port, () => {
     console.log(`Serveur en écoute sur http://localhost:${port}`);
 });
+
+// Code côté client pour récupérer et afficher les URLs
+async function fetchUrls() {
+    try {
+        const response = await fetch('http://localhost:3000/urls'); // Assurez-vous d'utiliser le bon port
+        const data = await response.json();
+
+        const urlList = document.getElementById('url-list');
+        urlList.innerHTML = ''; // Effacer le contenu précédent
+
+        data.forEach(item => {
+            const li = document.createElement('li');
+            li.textContent = item.url;
+            urlList.appendChild(li);
+        });
+    } catch (error) {
+        console.error('Erreur lors de la récupération des URLs:', error);
+    }
+}
+
+// Appeler la fonction pour récupérer les URLs à la charge de la page
+fetchUrls();
