@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirection</title>
+    <script>
+        // Fonction pour rediriger l'utilisateur
+        async function redirectUser() {
+            try {
+                const response = await fetch('data.json');
+                const data = await response.json();
+
+                // Récupérer l'URL actuelle
+                const currentUrl = window.location.href;
+
+                // Vérifier si l'URL actuelle est dans la liste
+                data.forEach(site => {
+                    if (currentUrl.includes(site)) {
+                        const newUrl = currentUrl.replace(site, `new-${site}`); // Remplace par une URL fictive
+                        window.location.href = newUrl; // Rediriger
+                    }
+                });
+            } catch (error) {
+                console.error('Erreur lors du chargement du fichier JSON:', error);
+            }
+        }
+
+        // Appeler la fonction de redirection au chargement de la page
+        window.onload = redirectUser;
+    </script>
+</head>
+<body>
+    <h1>Redirection en cours...</h1>
+</body>
+</html>
